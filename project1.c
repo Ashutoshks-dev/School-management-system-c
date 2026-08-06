@@ -44,9 +44,9 @@ void displaystaff();
 
 
 int main(){
-
     int choice;
-    
+    do
+    {
     printf("===========Main functions========\n");
 
     printf("1.student\n");
@@ -83,7 +83,7 @@ int main(){
         printf("Invalid Input");
         break;
     }
-
+ } while (choice != 4);
    
     return 0;
 }
@@ -91,12 +91,14 @@ int main(){
 
 void student(void ){
     int choice;
-
+    do
+    {
     printf("1.Add Student\n");
     printf("2.Display Student\n");
     printf("3.Search Student\n");
     printf("4.Update Student\n");
     printf("5.Delete Student\n");
+    printf("6.Main Menu\n");
 
     printf("Enter Your Choice:");
     scanf("%d",&choice);
@@ -128,41 +130,17 @@ void student(void ){
         printf("====Enter Details====\n");
         DeleteStudent();
         break;
+
+    case 6:
+        break;
     
     default:
         printf("Invalid Input");
         break;
     }
 
-}
-void staff(){
-
-    int choice;
-
-    printf("1.Add staff\n");
-    printf("2.Display Staff\n");
+    } while (choice != 6);
     
-
-    printf("Enter Your Choice:");
-    scanf("%d",&choice);
-
-    switch (choice)
-    {
-    case 1:
-        printf("====Enter Details====\n");
-        void addstaff();
-        break;
-
-    case 2:
-        printf("====Enter Details====\n");
-        void displaystaff();
-        break;
-        
-    default:
-        printf("Invalid Input");
-        break;
-    }
-
 }
 void AddStudent(struct student *s){
     
@@ -194,6 +172,10 @@ void AddStudent(struct student *s){
     fprintf(file,"%s  %d  %f  %s \n",s->name,s->rollno,s->cgpa,s->course);
     printf("\n");
 
+    printf("Student Added successfully\n");
+
+    printf("==================\n");
+
 
     fclose(file);
 
@@ -202,14 +184,14 @@ void DisplayStudent(){
     int stud;
     FILE(*file);
     file=fopen("student.txt","r");
-    stud=fgetc(file);
-
     
     if (file==NULL)
     {
         printf("File does not exist");
         return;
     }
+
+    stud=fgetc(file);
 
     for (int i = 0; stud != EOF; i++)
     {
@@ -223,6 +205,7 @@ void DisplayStudent(){
 void SearchStudent(){
     int ch;
     int search;
+    int found = 1;
     FILE(*file);
     file=fopen("student.txt","r");
     printf("Enter The Roll no:");
@@ -241,7 +224,8 @@ void SearchStudent(){
     while(fscanf(file,"%s %d %f %s",student.name,&student.rollno,&student.cgpa,student.course)==4){
 
      if (student.rollno == search)
-    {
+    {   
+        found = 0;
         printf("Name:%s\n",student.name);
         printf("Roll no:%d\n",student.rollno);
         printf("CGPA:%f\n",student.cgpa);
@@ -249,7 +233,15 @@ void SearchStudent(){
         break;
     }
     }
- fclose(file);
+
+    if (found){
+        printf("Student Not Found");
+    }
+
+    fclose(file);
+    
+    
+
 }
 void UpdateStudent(){
     int ch;
@@ -450,4 +442,32 @@ void addteacher(struct teachers *s){
     s->name[strspn(s->name,"\n")]='\0';
 
 }
+void staff(){
 
+    int choice;
+
+    printf("1.Add staff\n");
+    printf("2.Display Staff\n");
+    
+
+    printf("Enter Your Choice:");
+    scanf("%d",&choice);
+
+    switch (choice)
+    {
+    case 1:
+        printf("====Enter Details====\n");
+        void addstaff();
+        break;
+
+    case 2:
+        printf("====Enter Details====\n");
+        void displaystaff();
+        break;
+        
+    default:
+        printf("Invalid Input");
+        break;
+    }
+
+}
