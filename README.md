@@ -6,7 +6,8 @@ This is my first programming project built using the C programming language.
 
 The project is a simple Student Management System that allows users to store, display, search, update, and delete student records. It is a CRUD (Create, Read, Update, Delete) application that demonstrates my understanding of C programming, file handling, structures, and functions.
 
-This project is still under development. I will continue adding new features and improving the code to make it more efficient, organized, and user-friendly.
+This project represents my early progress in C programming. Development is currently paused while I focus on improving my skills and building new projects. The existing version demonstrates my initial experience with CRUD operations, structures, functions, and file handling.
+
 
 ## Features
 
